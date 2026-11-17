@@ -58,24 +58,24 @@ export const FavoritesView: React.FC<FavoritesViewProps> = ({
     <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-6 sm:py-8 space-y-6">
       
       {/* Title & Storage Notice */}
-      <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-4 pb-4 border-b border-slate-200">
+      <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-4 pb-4 border-b border-slate-200 dark:border-slate-800">
         <div>
-          <h2 className="text-xl sm:text-2xl font-black text-slate-900 flex items-center gap-2">
+          <h2 className="text-xl sm:text-2xl font-black text-slate-900 dark:text-white flex items-center gap-2">
             <Star className="w-6 h-6 text-amber-500 fill-amber-400" aria-hidden="true" />
             Meus Projetos Favoritos
           </h2>
-          <p className="text-xs sm:text-sm text-slate-500 mt-1">
+          <p className="text-xs sm:text-sm text-slate-500 dark:text-slate-400 mt-1">
             Salvos diretamente no armazenamento local do seu dispositivo (Guest-First) · Sem necessidade de criar conta ou login.
           </p>
         </div>
 
-        <div className="text-xs text-slate-500 self-start sm:self-auto bg-slate-100 px-3 py-1.5 rounded-xl font-medium">
-          <strong className="text-slate-900 tabular-nums">{favorites.length}</strong> projetos favoritados
+        <div className="text-xs text-slate-500 dark:text-slate-400 self-start sm:self-auto bg-slate-100 dark:bg-slate-800 px-3 py-1.5 rounded-xl font-medium">
+          <strong className="text-slate-900 dark:text-slate-100 tabular-nums">{favorites.length}</strong> projetos favoritados
         </div>
       </div>
 
       {/* Push Notification (FCM) Integration Banner (Requirement 3) */}
-      <div className="p-5 sm:p-6 rounded-3xl bg-gradient-to-br from-slate-900 to-slate-800 text-white shadow-lg space-y-4">
+      <div className="p-5 sm:p-6 rounded-3xl bg-gradient-to-br from-slate-900 to-slate-800 text-white shadow-lg space-y-4 border border-slate-800">
         <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-4">
           <div className="flex items-start gap-3.5">
             <div className="w-12 h-12 rounded-2xl bg-red-600/20 border border-red-500/30 flex items-center justify-center shrink-0">
@@ -151,19 +151,19 @@ export const FavoritesView: React.FC<FavoritesViewProps> = ({
 
       {/* Favorites List or Empty State */}
       {favorites.length === 0 ? (
-        <div className="text-center py-16 px-4 bg-white rounded-3xl border border-dashed border-slate-300 space-y-4">
-          <div className="w-16 h-16 rounded-full bg-amber-50 text-amber-500 flex items-center justify-center mx-auto">
+        <div className="text-center py-16 px-4 bg-white dark:bg-slate-900 rounded-3xl border border-dashed border-slate-300 dark:border-slate-700 space-y-4">
+          <div className="w-16 h-16 rounded-full bg-amber-50 dark:bg-amber-950/60 text-amber-500 flex items-center justify-center mx-auto">
             <Star className="w-8 h-8" />
           </div>
           <div className="max-w-md mx-auto space-y-2">
-            <h3 className="text-lg font-bold text-slate-900">Nenhum projeto favoritado ainda</h3>
-            <p className="text-xs sm:text-sm text-slate-500 leading-relaxed">
+            <h3 className="text-lg font-bold text-slate-900 dark:text-slate-100">Nenhum projeto favoritado ainda</h3>
+            <p className="text-xs sm:text-sm text-slate-500 dark:text-slate-400 leading-relaxed">
               Explore o catálogo aberto de oficinas esportivas e clique no ícone de estrela para salvar projetos aqui e receber alertas de novas vagas.
             </p>
           </div>
           <button
             onClick={onNavigateToExplore}
-            className="min-h-[48px] px-6 py-2.5 rounded-xl bg-slate-900 hover:bg-slate-800 text-white font-bold text-xs inline-flex items-center gap-2 transition-colors"
+            className="min-h-[48px] px-6 py-2.5 rounded-xl bg-slate-900 dark:bg-slate-100 hover:bg-slate-800 dark:hover:bg-white text-white dark:text-slate-900 font-bold text-xs inline-flex items-center gap-2 transition-colors"
           >
             <span>Explorar Vagas e Modalidades</span>
             <ArrowRight className="w-4 h-4" />

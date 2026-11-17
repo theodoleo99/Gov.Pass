@@ -2,6 +2,7 @@ export type ModalityCategory = 'todos' | 'adaptado' | 'convencional';
 
 export interface AccessibilitySettings {
   highContrast: boolean;
+  darkMode: boolean;
   fontScale: 'sm' | 'md' | 'lg' | 'xl';
   isAudioReadingActive: boolean;
 }

@@ -12,7 +12,6 @@ import { InteractiveMapView } from './components/InteractiveMapView.js';
 import { FavoritesView } from './components/FavoritesView.js';
 import { SportsGroupsView } from './components/SportsGroupsView.js';
 import { PrivacyLGPDView } from './components/PrivacyLGPDView.js';
-import { ArchitectureDocsModal } from './components/ArchitectureDocsModal.js';
 import { HelpGuideModal } from './components/HelpGuideModal.js';
 import { BottomNavigation, AppTab } from './components/BottomNavigation.js';
 
@@ -36,8 +35,8 @@ import {
   resolveLocationQuery
 } from './utils/geo.js';
 
-const STORAGE_FAVORITES_KEY = 'conecta_esporte_favorites_v2';
-const STORAGE_PROFILE_KEY = 'conecta_esporte_user_profile_v2';
+const STORAGE_FAVORITES_KEY = 'gov_pass_favorites_v2';
+const STORAGE_PROFILE_KEY = 'gov_pass_user_profile_v2';
 
 export default function App() {
   const [activeTab, setActiveTab] = useState<AppTab>('projects');
@@ -45,6 +44,7 @@ export default function App() {
   // Accessibility state
   const [accessibility, setAccessibility] = useState<AccessibilitySettings>({
     highContrast: false,
+    darkMode: false,
     fontScale: 'md',
     isAudioReadingActive: false
   });
@@ -59,7 +59,6 @@ export default function App() {
 
   // Interactive Modals
   const [selectedProjectForModal, setSelectedProjectForModal] = useState<SportProject | null>(null);
-  const [isArchitectureModalOpen, setIsArchitectureModalOpen] = useState(false);
   const [isHelpModalOpen, setIsHelpModalOpen] = useState(false);
   const [isOriginModalOpen, setIsOriginModalOpen] = useState(false);
   const [tempCityInput, setTempCityInput] = useState(selectedCity);
@@ -81,7 +80,7 @@ export default function App() {
       if (saved) return JSON.parse(saved);
     } catch {}
     return {
-      nickname: 'Atleta Conecta',
+      nickname: 'Atleta Gov.Pass',
       isMinor: false,
       favoriteProjectIds: ['gov-lie-01', 'gov-pst-02', 'gov-lie-08'],
       notificationPrefs: {
@@ -136,7 +135,7 @@ export default function App() {
     } catch {}
     setFavoriteProjectIds([]);
     setUserProfile({
-      nickname: 'Atleta Conecta',
+      nickname: 'Atleta Gov.Pass',
       isMinor: false,
       favoriteProjectIds: [],
       notificationPrefs: {
@@ -252,13 +251,12 @@ export default function App() {
   }, [favoriteProjectIds]);
 
   return (
-    <div className="min-h-screen flex flex-col bg-slate-50 text-slate-900 pb-32 sm:pb-28 selection:bg-red-500 selection:text-white">
+    <div className="min-h-screen flex flex-col bg-slate-50 dark:bg-slate-950 text-slate-900 dark:text-slate-100 pb-32 sm:pb-28 selection:bg-red-500 selection:text-white transition-colors">
       
       {/* Top Accessible Header */}
       <Header
         accessibility={accessibility}
         setAccessibility={setAccessibility}
-        onOpenArchitectureDocs={() => setIsArchitectureModalOpen(true)}
         onOpenHelp={() => setIsHelpModalOpen(true)}
       />
 
@@ -288,24 +286,24 @@ export default function App() {
             <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-6 sm:py-8 space-y-6">
               
               {/* Informative Kicker */}
-              <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-2 pb-2 border-b border-slate-200 text-xs text-slate-500">
+              <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-2 pb-2 border-b border-slate-200 dark:border-slate-800 text-xs text-slate-500 dark:text-slate-400">
                 <span>
-                  Distâncias calculadas a partir de seu ponto de partida (Google Maps): <strong>{selectedCity}</strong>
+                  Distâncias calculadas a partir de seu ponto de partida (Google Maps): <strong className="text-slate-800 dark:text-slate-200">{selectedCity}</strong>
                 </span>
                 <button
                   onClick={() => setIsOriginModalOpen(true)}
-                  className="text-red-600 hover:text-red-700 font-bold underline self-start sm:self-auto"
+                  className="text-red-600 dark:text-red-400 hover:text-red-700 font-bold underline self-start sm:self-auto"
                 >
                   Alterar CEP / Cidade
                 </button>
               </div>
 
               {filteredProjects.length === 0 ? (
-                <div className="text-center py-16 px-4 bg-white rounded-3xl border border-dashed border-slate-300 space-y-3">
-                  <p className="text-base font-bold text-slate-800">
+                <div className="text-center py-16 px-4 bg-white dark:bg-slate-900 rounded-3xl border border-dashed border-slate-300 dark:border-slate-700 space-y-3">
+                  <p className="text-base font-bold text-slate-800 dark:text-slate-100">
                     Nenhum projeto encontrado para os filtros selecionados.
                   </p>
-                  <p className="text-xs text-slate-500 max-w-md mx-auto">
+                  <p className="text-xs text-slate-500 dark:text-slate-400 max-w-md mx-auto">
                     Tente selecionar "Todos os Esportes" ou buscar por outro termo.
                   </p>
                   <button
@@ -314,7 +312,7 @@ export default function App() {
                       setSelectedSport('Todos');
                       setSearchQuery('');
                     }}
-                    className="min-h-[44px] px-5 py-2 rounded-xl bg-slate-900 text-white font-semibold text-xs"
+                    className="min-h-[44px] px-5 py-2 rounded-xl bg-slate-900 dark:bg-slate-100 text-white dark:text-slate-900 font-semibold text-xs"
                   >
                     Ver Todas as Modalidades
                   </button>
@@ -404,11 +402,6 @@ export default function App() {
         />
       )}
 
-      {/* Technical Architecture Docs Modal */}
-      {isArchitectureModalOpen && (
-        <ArchitectureDocsModal onClose={() => setIsArchitectureModalOpen(false)} />
-      )}
-
       {/* Help Guide Modal */}
       {isHelpModalOpen && (
         <HelpGuideModal onClose={() => setIsHelpModalOpen(false)} />
@@ -417,11 +410,11 @@ export default function App() {
       {/* Origin Selection Modal */}
       {isOriginModalOpen && (
         <div className="fixed inset-0 z-50 flex items-center justify-center p-4 bg-black/60 backdrop-blur-xs">
-          <div className="bg-white rounded-3xl max-w-md w-full p-6 shadow-2xl border border-slate-200 space-y-4">
-            <h3 className="text-base font-bold text-slate-900">
+          <div className="bg-white dark:bg-slate-900 rounded-3xl max-w-md w-full p-6 shadow-2xl border border-slate-200 dark:border-slate-800 space-y-4">
+            <h3 className="text-base font-bold text-slate-900 dark:text-slate-100">
               Alterar CEP ou Cidade de Partida (Google Maps)
             </h3>
-            <p className="text-xs text-slate-600 leading-relaxed">
+            <p className="text-xs text-slate-600 dark:text-slate-400 leading-relaxed">
               Todas as distâncias e rotas para as oficinas esportivas serão recalculadas a partir deste endereço.
             </p>
             <form onSubmit={handleApplyOrigin} className="space-y-4">
@@ -430,14 +423,14 @@ export default function App() {
                 placeholder="Ex: 04329-000, São Paulo, Santos, Curitiba, Rio de Janeiro"
                 value={tempCityInput}
                 onChange={(e) => setTempCityInput(e.target.value)}
-                className="w-full min-h-[48px] px-4 py-2 rounded-xl border border-slate-300 text-sm focus:border-red-500"
+                className="w-full min-h-[48px] px-4 py-2 rounded-xl border border-slate-300 dark:border-slate-700 bg-white dark:bg-slate-800 text-slate-900 dark:text-slate-100 text-sm focus:border-red-500"
                 autoFocus
               />
               <div className="flex justify-end gap-2">
                 <button
                   type="button"
                   onClick={() => setIsOriginModalOpen(false)}
-                  className="min-h-[44px] px-4 py-2 rounded-xl text-slate-600 text-xs font-semibold hover:bg-slate-100"
+                  className="min-h-[44px] px-4 py-2 rounded-xl text-slate-600 dark:text-slate-300 text-xs font-semibold hover:bg-slate-100 dark:hover:bg-slate-800"
                 >
                   Cancelar
                 </button>

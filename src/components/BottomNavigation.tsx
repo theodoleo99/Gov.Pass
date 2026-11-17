@@ -1,5 +1,5 @@
 import React from 'react';
-import { Compass, Star, Users, ShieldCheck, Dumbbell } from 'lucide-react';
+import { Compass, Star, Users, UserCheck, Dumbbell } from 'lucide-react';
 
 export type AppTab = 'projects' | 'map' | 'favorites' | 'groups' | 'privacy';
 
@@ -41,8 +41,8 @@ export const BottomNavigation: React.FC<BottomNavigationProps> = ({
     },
     {
       id: 'privacy' as AppTab,
-      label: 'LGPD',
-      icon: ShieldCheck,
+      label: 'Cadastro',
+      icon: UserCheck,
       badge: null
     }
   ];
@@ -50,7 +50,7 @@ export const BottomNavigation: React.FC<BottomNavigationProps> = ({
   return (
     <nav
       aria-label="Navegação Principal do Aplicativo"
-      className="fixed bottom-0 left-0 right-0 z-40 bg-white/95 backdrop-blur-md border-t border-slate-200 transition-colors shadow-lg"
+      className="fixed bottom-0 left-0 right-0 z-40 bg-white/95 dark:bg-slate-900/95 backdrop-blur-md border-t border-slate-200 dark:border-slate-800 transition-colors shadow-lg"
     >
       <div className="max-w-md mx-auto grid grid-cols-5 items-center h-16 px-1">
         {tabs.map((tab) => {
@@ -63,8 +63,8 @@ export const BottomNavigation: React.FC<BottomNavigationProps> = ({
               aria-label={tab.label}
               className={`min-h-[48px] flex flex-col items-center justify-center relative py-1 rounded-xl transition-all ${
                 isActive
-                  ? 'text-red-600 font-bold'
-                  : 'text-slate-500 hover:text-slate-900 font-medium'
+                  ? 'text-red-600 dark:text-red-400 font-bold'
+                  : 'text-slate-500 dark:text-slate-400 hover:text-slate-900 dark:hover:text-slate-100 font-medium'
               }`}
             >
               <div className="relative">
@@ -79,7 +79,7 @@ export const BottomNavigation: React.FC<BottomNavigationProps> = ({
                 {tab.label}
               </span>
               {isActive && (
-                <span className="w-1 h-1 rounded-full bg-red-600 absolute bottom-1" />
+                <span className="w-1 h-1 rounded-full bg-red-600 dark:bg-red-400 absolute bottom-1" />
               )}
             </button>
           );

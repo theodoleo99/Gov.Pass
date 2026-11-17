@@ -97,25 +97,25 @@ export const SearchAndFilters: React.FC<SearchAndFiltersProps> = ({
   }, [filteredSportsList]);
 
   return (
-    <section className="bg-white border-b border-slate-200 py-4 sm:py-5" aria-label="Busca e Filtros de Projetos">
+    <section className="bg-white dark:bg-slate-900 border-b border-slate-200 dark:border-slate-800 py-4 sm:py-5 transition-colors" aria-label="Busca e Filtros de Projetos">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 space-y-4">
         
         {/* Prominent PCD / Esporte Adaptado Quick Toggle */}
-        <div className="flex flex-col sm:flex-row items-stretch sm:items-center justify-between gap-3 bg-slate-50 p-2.5 sm:p-3 rounded-2xl border border-slate-200/80">
+        <div className="flex flex-col sm:flex-row items-stretch sm:items-center justify-between gap-3 bg-slate-50 dark:bg-slate-800/70 p-2.5 sm:p-3 rounded-2xl border border-slate-200/80 dark:border-slate-700/80">
           <div className="flex items-center gap-2">
-            <Accessibility className="w-5 h-5 text-red-600 shrink-0" aria-hidden="true" />
-            <span className="text-xs sm:text-sm font-semibold text-slate-800">
+            <Accessibility className="w-5 h-5 text-red-600 dark:text-red-400 shrink-0" aria-hidden="true" />
+            <span className="text-xs sm:text-sm font-semibold text-slate-800 dark:text-slate-100">
               Inclusão e Paradesporto:
             </span>
           </div>
 
-          <div className="flex items-center gap-1.5 p-1 bg-white rounded-xl border border-slate-200 overflow-x-auto no-scrollbar">
+          <div className="flex items-center gap-1.5 p-1 bg-white dark:bg-slate-900 rounded-xl border border-slate-200 dark:border-slate-700 overflow-x-auto no-scrollbar">
             <button
               onClick={() => setModalityFilter('todos')}
               className={`min-h-[44px] px-3 sm:px-4 py-2 rounded-lg text-xs font-semibold transition-all whitespace-nowrap ${
                 modalityFilter === 'todos'
-                  ? 'bg-slate-900 text-white shadow-sm'
-                  : 'text-slate-600 hover:text-slate-900 hover:bg-slate-50'
+                  ? 'bg-slate-900 dark:bg-slate-100 text-white dark:text-slate-900 shadow-sm'
+                  : 'text-slate-600 dark:text-slate-300 hover:text-slate-900 dark:hover:text-white hover:bg-slate-50 dark:hover:bg-slate-800'
               }`}
             >
               Todas as Modalidades
@@ -127,7 +127,7 @@ export const SearchAndFilters: React.FC<SearchAndFiltersProps> = ({
               className={`min-h-[44px] px-3 sm:px-4 py-2 rounded-lg text-xs font-bold transition-all flex items-center gap-1.5 whitespace-nowrap ${
                 modalityFilter === 'adaptado'
                   ? 'bg-red-600 text-white shadow-sm ring-2 ring-red-500/30'
-                  : 'bg-red-50 text-red-700 hover:bg-red-100'
+                  : 'bg-red-50 dark:bg-red-950/60 text-red-700 dark:text-red-300 hover:bg-red-100 dark:hover:bg-red-900/60'
               }`}
             >
               <Accessibility className="w-4 h-4 shrink-0" aria-hidden="true" />
@@ -139,8 +139,8 @@ export const SearchAndFilters: React.FC<SearchAndFiltersProps> = ({
               onClick={() => setModalityFilter('convencional')}
               className={`min-h-[44px] px-3 py-2 rounded-lg text-xs font-semibold transition-all whitespace-nowrap ${
                 modalityFilter === 'convencional'
-                  ? 'bg-slate-900 text-white shadow-sm'
-                  : 'text-slate-600 hover:text-slate-900 hover:bg-slate-50'
+                  ? 'bg-slate-900 dark:bg-slate-100 text-white dark:text-slate-900 shadow-sm'
+                  : 'text-slate-600 dark:text-slate-300 hover:text-slate-900 dark:hover:text-white hover:bg-slate-50 dark:hover:bg-slate-800'
               }`}
             >
               Convencional
@@ -164,13 +164,13 @@ export const SearchAndFilters: React.FC<SearchAndFiltersProps> = ({
                 placeholder="Buscar por esporte, bairro ou projeto público..."
                 value={searchQuery}
                 onChange={(e) => setSearchQuery(e.target.value)}
-                className="w-full min-h-[48px] pl-10 pr-10 py-2.5 rounded-xl border border-slate-300 bg-white text-slate-900 text-sm focus:outline-none focus:border-red-500 focus:ring-2 focus:ring-red-500/20"
+                className="w-full min-h-[48px] pl-10 pr-10 py-2.5 rounded-xl border border-slate-300 dark:border-slate-700 bg-white dark:bg-slate-800 text-slate-900 dark:text-slate-100 placeholder:text-slate-400 text-sm focus:outline-none focus:border-red-500 focus:ring-2 focus:ring-red-500/20"
               />
               {searchQuery && (
                 <button
                   onClick={() => setSearchQuery('')}
                   aria-label="Limpar texto de busca"
-                  className="min-h-[40px] min-w-[40px] flex items-center justify-center text-slate-400 hover:text-slate-600 absolute right-1.5 top-1/2 -translate-y-1/2"
+                  className="min-h-[40px] min-w-[40px] flex items-center justify-center text-slate-400 hover:text-slate-600 dark:hover:text-slate-200 absolute right-1.5 top-1/2 -translate-y-1/2"
                 >
                   <X className="w-4 h-4" />
                 </button>
@@ -183,16 +183,16 @@ export const SearchAndFilters: React.FC<SearchAndFiltersProps> = ({
             <button
               onClick={() => setIsCityInputOpen(true)}
               aria-label={`Local de partida: ${selectedCity}. Clique para alterar CEP ou Cidade de referência`}
-              className="w-full min-h-[48px] px-3.5 py-2 rounded-xl border border-slate-300 bg-white hover:bg-slate-50 text-slate-800 text-xs sm:text-sm font-medium flex items-center justify-between transition-colors text-left"
+              className="w-full min-h-[48px] px-3.5 py-2 rounded-xl border border-slate-300 dark:border-slate-700 bg-white dark:bg-slate-800 hover:bg-slate-50 dark:hover:bg-slate-700/80 text-slate-800 dark:text-slate-100 text-xs sm:text-sm font-medium flex items-center justify-between transition-colors text-left"
             >
               <div className="flex items-center gap-2.5 truncate">
-                <MapPin className="w-5 h-5 text-red-600 shrink-0" aria-hidden="true" />
+                <MapPin className="w-5 h-5 text-red-600 dark:text-red-400 shrink-0" aria-hidden="true" />
                 <div className="truncate">
-                  <span className="text-[10px] text-slate-500 block leading-tight">Ponto de Partida / CEP (Google Maps):</span>
-                  <span className="font-semibold text-slate-900 truncate">{selectedCity}</span>
+                  <span className="text-[10px] text-slate-500 dark:text-slate-400 block leading-tight">Ponto de Partida / CEP (Google Maps):</span>
+                  <span className="font-semibold text-slate-900 dark:text-slate-100 truncate">{selectedCity}</span>
                 </div>
               </div>
-              <span className="text-xs text-red-600 font-bold px-2 py-1 bg-red-50 rounded-lg shrink-0">
+              <span className="text-xs text-red-600 dark:text-red-400 font-bold px-2 py-1 bg-red-50 dark:bg-red-950/60 rounded-lg shrink-0">
                 Alterar
               </span>
             </button>
@@ -212,16 +212,16 @@ export const SearchAndFilters: React.FC<SearchAndFiltersProps> = ({
                 onClick={() => setIsSportDropdownOpen(!isSportDropdownOpen)}
                 aria-haspopup="true"
                 aria-expanded={isSportDropdownOpen}
-                className="min-h-[42px] px-3.5 py-1.5 rounded-xl border border-slate-300 bg-white hover:bg-slate-50 text-slate-900 font-bold flex items-center gap-2 transition-all shadow-xs"
+                className="min-h-[42px] px-3.5 py-1.5 rounded-xl border border-slate-300 dark:border-slate-700 bg-white dark:bg-slate-800 hover:bg-slate-50 dark:hover:bg-slate-700 text-slate-900 dark:text-slate-100 font-bold flex items-center gap-2 transition-all shadow-xs"
               >
-                <span className="text-slate-500 font-normal">Modalidade:</span>
-                <span className="text-red-600">{selectedSport}</span>
+                <span className="text-slate-500 dark:text-slate-400 font-normal">Modalidade:</span>
+                <span className="text-red-600 dark:text-red-400">{selectedSport}</span>
                 <ChevronDown className="w-4 h-4 text-slate-400" />
               </button>
 
               {/* Dropdown Menu listing all Gov.br sports catalog */}
               {isSportDropdownOpen && (
-                <div className="absolute left-0 top-full mt-2 w-80 sm:w-96 bg-white rounded-2xl shadow-2xl border border-slate-200 z-50 p-3 space-y-2 animate-fadeIn max-h-[420px] flex flex-col">
+                <div className="absolute left-0 top-full mt-2 w-80 sm:w-96 bg-white dark:bg-slate-900 rounded-2xl shadow-2xl border border-slate-200 dark:border-slate-700 z-50 p-3 space-y-2 animate-fadeIn max-h-[420px] flex flex-col">
                   
                   {/* Dynamic search input inside dropdown */}
                   <div className="relative">
@@ -231,7 +231,7 @@ export const SearchAndFilters: React.FC<SearchAndFiltersProps> = ({
                       placeholder="Filtrar modalidades do Gov.br..."
                       value={sportFilterSearch}
                       onChange={(e) => setSportFilterSearch(e.target.value)}
-                      className="w-full min-h-[40px] pl-9 pr-3 py-1.5 rounded-xl border border-slate-200 bg-slate-50 text-xs text-slate-900 focus:outline-none focus:border-red-500"
+                      className="w-full min-h-[40px] pl-9 pr-3 py-1.5 rounded-xl border border-slate-200 dark:border-slate-700 bg-slate-50 dark:bg-slate-800 text-xs text-slate-900 dark:text-slate-100 focus:outline-none focus:border-red-500"
                       autoFocus
                     />
                   </div>
@@ -246,17 +246,17 @@ export const SearchAndFilters: React.FC<SearchAndFiltersProps> = ({
                         setIsSportDropdownOpen(false);
                       }}
                       className={`w-full text-left px-3 py-2 rounded-xl text-xs font-semibold flex items-center justify-between ${
-                        selectedSport === 'Todos' ? 'bg-red-50 text-red-700 font-bold' : 'hover:bg-slate-50 text-slate-800'
+                        selectedSport === 'Todos' ? 'bg-red-50 dark:bg-red-950/60 text-red-700 dark:text-red-300 font-bold' : 'hover:bg-slate-50 dark:hover:bg-slate-800 text-slate-800 dark:text-slate-200'
                       }`}
                     >
                       <span>Todos os Esportes</span>
-                      {selectedSport === 'Todos' && <Check className="w-4 h-4 text-red-600" />}
+                      {selectedSport === 'Todos' && <Check className="w-4 h-4 text-red-600 dark:text-red-400" />}
                     </button>
 
                     {/* Grouped categories */}
                     {sportsByCategory.map(([categoryLabel, items]) => (
                       <div key={categoryLabel} className="space-y-1">
-                        <span className="text-[10px] font-bold uppercase tracking-wider text-slate-400 px-2 block">
+                        <span className="text-[10px] font-bold uppercase tracking-wider text-slate-400 dark:text-slate-500 px-2 block">
                           {categoryLabel}
                         </span>
                         <div className="space-y-0.5">
@@ -273,13 +273,13 @@ export const SearchAndFilters: React.FC<SearchAndFiltersProps> = ({
                                 className={`w-full text-left px-3 py-2 rounded-xl text-xs flex items-center justify-between transition-colors ${
                                   isSelected
                                     ? 'bg-red-600 text-white font-bold'
-                                    : 'hover:bg-slate-100 text-slate-800'
+                                    : 'hover:bg-slate-100 dark:hover:bg-slate-800 text-slate-800 dark:text-slate-200'
                                 }`}
                               >
                                 <span className="truncate">{sport.canonicalName}</span>
                                 {sport.isAdaptive && (
                                   <span className={`text-[10px] px-1.5 py-0.2 rounded font-bold ml-1.5 shrink-0 ${
-                                    isSelected ? 'bg-white/20 text-white' : 'bg-red-100 text-red-700'
+                                    isSelected ? 'bg-white/20 text-white' : 'bg-red-100 dark:bg-red-950 text-red-700 dark:text-red-300'
                                   }`}>
                                     PCD
                                   </span>
@@ -298,12 +298,12 @@ export const SearchAndFilters: React.FC<SearchAndFiltersProps> = ({
 
             {/* Age Group Filter */}
             <div className="flex items-center gap-1.5">
-              <span className="text-slate-500 font-medium">Faixa Etária:</span>
+              <span className="text-slate-500 dark:text-slate-400 font-medium">Faixa Etária:</span>
               <select
                 value={selectedAgeGroup}
                 onChange={(e) => setSelectedAgeGroup(e.target.value)}
                 aria-label="Filtrar por faixa etária"
-                className="min-h-[42px] px-3 py-1.5 rounded-xl border border-slate-300 bg-white text-slate-800 font-semibold focus:outline-none focus:border-red-500"
+                className="min-h-[42px] px-3 py-1.5 rounded-xl border border-slate-300 dark:border-slate-700 bg-white dark:bg-slate-800 text-slate-800 dark:text-slate-100 font-semibold focus:outline-none focus:border-red-500"
               >
                 {AGE_GROUPS.map(ag => (
                   <option key={ag.value} value={ag.value}>{ag.label}</option>
@@ -314,8 +314,8 @@ export const SearchAndFilters: React.FC<SearchAndFiltersProps> = ({
           </div>
 
           {/* Results counter indicator */}
-          <div className="text-slate-600 text-xs font-medium">
-            <span className="font-bold text-slate-900 tabular-nums">{totalFilteredCount}</span> projetos públicos encontrados
+          <div className="text-slate-600 dark:text-slate-400 text-xs font-medium">
+            <span className="font-bold text-slate-900 dark:text-slate-100 tabular-nums">{totalFilteredCount}</span> projetos públicos encontrados
           </div>
 
         </div>
@@ -323,22 +323,22 @@ export const SearchAndFilters: React.FC<SearchAndFiltersProps> = ({
         {/* Modal / Dialog for Manual CEP or City selection */}
         {isCityInputOpen && (
           <div className="fixed inset-0 z-50 flex items-center justify-center p-4 bg-black/60 backdrop-blur-xs">
-            <div className="bg-white rounded-3xl max-w-md w-full p-6 shadow-2xl border border-slate-200 space-y-4">
+            <div className="bg-white dark:bg-slate-900 rounded-3xl max-w-md w-full p-6 shadow-2xl border border-slate-200 dark:border-slate-800 space-y-4">
               <div className="flex items-center justify-between">
-                <h3 className="text-base font-bold text-slate-900 flex items-center gap-2">
-                  <MapPin className="w-5 h-5 text-red-600" />
+                <h3 className="text-base font-bold text-slate-900 dark:text-slate-100 flex items-center gap-2">
+                  <MapPin className="w-5 h-5 text-red-600 dark:text-red-400" />
                   Definir Ponto de Partida (CEP / Cidade)
                 </h3>
                 <button
                   onClick={() => setIsCityInputOpen(false)}
-                  className="min-h-[40px] min-w-[40px] flex items-center justify-center text-slate-400 hover:text-slate-700"
+                  className="min-h-[40px] min-w-[40px] flex items-center justify-center text-slate-400 hover:text-slate-700 dark:hover:text-slate-200"
                 >
                   <X className="w-5 h-5" />
                 </button>
               </div>
 
-              <p className="text-xs text-slate-600 leading-relaxed">
-                Informe o seu CEP ou cidade. O ConectaEsporte utilizará esse local como ponto de partida no Google Maps para calcular rotas e a distância exata até as oficinas esportivas.
+              <p className="text-xs text-slate-600 dark:text-slate-400 leading-relaxed">
+                Informe o seu CEP ou cidade. O Gov.Pass utilizará esse local como ponto de partida no Google Maps para calcular rotas e a distância exata até as oficinas esportivas.
               </p>
 
               <form onSubmit={handleApplyCity} className="space-y-4">
@@ -347,19 +347,19 @@ export const SearchAndFilters: React.FC<SearchAndFiltersProps> = ({
                   placeholder="Ex: 04329-000, São Paulo, Santos, Curitiba ou Rio de Janeiro"
                   value={cityInputText}
                   onChange={(e) => setCityInputText(e.target.value)}
-                  className="w-full min-h-[48px] px-4 py-2 rounded-xl border border-slate-300 text-sm focus:outline-none focus:border-red-500 font-medium"
+                  className="w-full min-h-[48px] px-4 py-2 rounded-xl border border-slate-300 dark:border-slate-700 bg-white dark:bg-slate-800 text-slate-900 dark:text-slate-100 text-sm focus:outline-none focus:border-red-500 font-medium"
                   autoFocus
                 />
 
                 <div className="space-y-1.5 text-xs">
-                  <span className="text-slate-500 text-[11px] block">Locais frequentes de referência:</span>
+                  <span className="text-slate-500 dark:text-slate-400 text-[11px] block">Locais frequentes de referência:</span>
                   <div className="flex flex-wrap gap-1.5">
                     {['São Paulo', 'Rio de Janeiro', 'Belo Horizonte', 'Brasília', 'Curitiba', 'Salvador', 'Santos', 'Porto Alegre'].map(c => (
                       <button
                         key={c}
                         type="button"
                         onClick={() => setCityInputText(c)}
-                        className="px-2.5 py-1 rounded-lg bg-slate-100 hover:bg-slate-200 text-slate-700 font-medium transition-colors"
+                        className="px-2.5 py-1 rounded-lg bg-slate-100 dark:bg-slate-800 hover:bg-slate-200 dark:hover:bg-slate-700 text-slate-700 dark:text-slate-200 font-medium transition-colors"
                       >
                         {c}
                       </button>
@@ -371,7 +371,7 @@ export const SearchAndFilters: React.FC<SearchAndFiltersProps> = ({
                   <button
                     type="button"
                     onClick={() => setIsCityInputOpen(false)}
-                    className="min-h-[44px] px-4 py-2 rounded-xl text-slate-600 text-xs font-semibold hover:bg-slate-100"
+                    className="min-h-[44px] px-4 py-2 rounded-xl text-slate-600 dark:text-slate-300 text-xs font-semibold hover:bg-slate-100 dark:hover:bg-slate-800"
                   >
                     Cancelar
                   </button>
